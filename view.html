@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Blog</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            font-size:60%;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            background-color: #111;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #aaaaaa;
+            margin-bottom: 30px;
+        }
+        input,textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+        }
+        input::placeholder,textarea::placeholder {
+            color: #777;
+        }
+        input:focus,textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+        textarea {
+            height: 140px;
+            resize: none;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Write Your Blog</h1>
+        <p class="subtitle">Create something meaningful and share your thoughts</p>
+
+        <input type="text" id="tittle" placeholder="Enter the blog title">
+        <textarea id="content" placeholder="Write your blog..."></textarea>
+
+        <button onclick="saveblog()">Save Blog</button>
+        <br><br>
+        <button onclick="openSavedBlogs()">Saved Blogs</button>
+
+    </div>
+
+    <script>
+function saveblog() {
+    // 1. Get input values
+    let title = document.getElementById("tittle").value;
+    let content = document.getElementById("content").value;
+
+    // 2. Get existing blogs OR create empty list
+    let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+    // 3. Create new blog object
+    let blog = {
+        title: title,
+        content: content
+    };
+
+    // 4. Add blog to list
+    blogs.push(blog);
+
+    // 5. Save updated list back
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+
+    // 6. Go to view page
+    window.location.href = "view.html";
+}
+let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+let editIndex = localStorage.getItem("editIndex");
+
+if (editIndex !== null) {
+    document.getElementById("tittle").value = blogs[editIndex].title;
+    document.getElementById("content").value = blogs[editIndex].content;
+}
+
+function saveblog() {
+    let title = document.getElementById("tittle").value;
+    let content = document.getElementById("content").value;
+
+    if (editIndex !== null) {
+        blogs[editIndex].title = title;
+        blogs[editIndex].content = content;
+        localStorage.removeItem("editIndex");
+    } else {
+        blogs.push({ title, content });
+    }
+
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+    window.location.href = "view.html";
+}
+function openSavedBlogs() {
+    window.location.href = "saved.html";
+}    
+</script>
+</body>
+</html>

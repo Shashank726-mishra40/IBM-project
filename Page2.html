@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<style>
+    
+    
+    header{
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-top: 28px;
+    }
+    .logo{
+     text-align: center;
+      margin-top: 100px;
+    }
+    input{
+        border: none;
+        border-bottom: 1px solid grey;
+        padding-bottom: 18px;
+        outline: none;
+    }
+    button{
+        width: 270px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: rgb(142, 140, 138);
+    }
+    .or{
+border: 1px solid black;
+padding: 13px;
+width: 260px;
+margin: 22px;
+
+
+    }
+    .or:hover{
+        background-color: rgb(220, 220, 220);
+    }
+    .body{
+        display: flex;
+        justify-content: space-evenly;
+    }
+input:hover{
+    border-color: black;
+    border-bottom: 2px solid;
+}
+button{
+cursor:pointer;
+}
+button:focus{
+    background-color: bisque;
+}
+
+</style>
+<body>
+   <header>
+    <div class="back" style="font-weight: 800;font-size: 20px;">
+        <span class="bi bi-arrow-left" onclick="goOnpage()"> BACK</span>
+    </div>
+<div style="font-weight: 800;font-size: 20px;">
+    CREATE ACCOUNT
+</div>
+   </header> 
+<div class="logo">
+    <i class="bi bi-wind" style="font-size: 27px;"></i>
+    <h3 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Log into Blogging Together</h3>
+</div>
+<section class="body">
+    <div class="login">
+
+    <dl>
+    <label><small style="color: gray;">EMAIL ADDRESS</small></label><br><br>
+    <input type="email" placeholder="name@exapmle.com" style="width: 263px;">
+    </dl>
+    <label><small style="color: gray;">PASSWORD</small></label><br><br>
+    <input type="password" placeholder="Password" style="width: 263px;"required>
+<br><br>
+    <button onclick="Nextpage()">LOG IN</button>
+
+</div>
+
+
+
+<div>
+    <main class="or">
+    <i class="bi bi-google"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Continue with Google</span></main>
+     <main class="or">
+    <i class="bi bi-apple"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Continue with Apple</span></main>
+     <main class="or">
+    <i class="bi bi-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>Continue with Facebook</span></main>
+</div>
+</section>
+
+<div style="text-align: center; margin-top: 33px;">CAN'T LOG IN?</div>
+<div style="text-align: center; margin-top: 33px;"><small>Secure Login with reCAPTCHA subject to Google<br>
+<a href="#">Terms & Privacy</a></small></div>
+
+
+
+<script>
+    function goOnpage(){
+        location.assign("projectIBM.html")
+    }
+
+    function Nextpage(){
+        location.assign("blog1.html");
+
+    }
+</script>
+</body>
+</html>

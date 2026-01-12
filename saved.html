@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Blogs</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            padding: 20px;
+        }
+        .blog {
+            border: 1px solid #444;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Saved Blogs</h1>
+
+<div id="blogList"></div>
+
+<button onclick="goBack()">Back</button>
+
+<script>
+let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+function showBlogs() {
+    let box = document.getElementById("blogList");
+    box.innerHTML = "";
+
+    for (let i = 0; i < blogs.length; i++) {
+        box.innerHTML += `
+            <div class="blog">
+                <h3>${blogs[i].title}</h3>
+                <p>${blogs[i].content}</p>
+                <button onclick="editBlog(${i})">Edit</button>
+                <button onclick="deleteBlog(${i})">Delete</button>
+            </div>
+        `;
+    }
+}
+
+function deleteBlog(index) {
+    blogs.splice(index, 1);          // remove blog
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+    showBlogs();
+}
+function editBlog(index) {
+    localStorage.setItem("editIndex", index);
+    window.location.href = "blog1.html";
+}
+
+function goBack() {
+    window.location.href = "blog1.html";
+}
+function saveblog() {
+    let title = document.getElementById("tittle").value;
+    let content = document.getElementById("content").value;
+
+    let editIndex = localStorage.getItem("editIndex");
+
+    if (editIndex !== null) {
+        blogs[editIndex] = { title, content };
+        localStorage.removeItem("editIndex");
+    } else {
+        blogs.push({ title, content });
+    }
+
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+    window.location.href = "saved.html";
+}
+showBlogs();
+</script>
+
+</body>
+</html>
